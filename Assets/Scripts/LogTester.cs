@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -101,5 +102,16 @@ public class LogTester : MonoBehaviour
         string logs = AndroidLogManager.GetLogs();
         int lineCount = logs.Split('\n').Length;
         UpdateStatus($"Status: {lineCount} log lines\nTap buttons to test");
+    }
+
+    [RuntimeInitializeOnLoadMethod]
+    static void RegisterUnityLogCallback()
+    {
+        Application.logMessageReceived += HandleUnityLog;
+    }
+
+    private static void HandleUnityLog(string log, string stackTrace, LogType type)
+    {
+        AndroidLogManager.SendLog($"{type}: {log}");
     }
 }
