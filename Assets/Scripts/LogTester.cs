@@ -76,11 +76,6 @@ public class LogTester : MonoBehaviour
     {
         Debug.Log($"Test log at time: {Time.time}");
         UpdateStatus($"Test log added at {Time.time:F2}");
-
-        if (Time.time % 3f < 1f)
-            Debug.LogWarning($"Warning test at {Time.time}");
-        else if (Time.time % 3f < 2f)
-            Debug.LogError($"Error test at {Time.time}");
     }
 
     public void ShowHelp()
